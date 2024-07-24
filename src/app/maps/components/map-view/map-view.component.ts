@@ -10,6 +10,10 @@ import * as L from 'leaflet'
 export class MapViewComponent implements AfterViewInit {
   private placesService = inject(PlacesService);
 
+  private southWest = L.latLng(-89.98155760646617, -180);
+  private northEast = L.latLng(89.99346179538875, 180);
+  private bounds = L.latLngBounds(this.southWest, this.northEast);
+
   public map?: L.Map;
 
   ngAfterViewInit(): void {
@@ -17,8 +21,14 @@ export class MapViewComponent implements AfterViewInit {
   }
 
   public initMap(){
+    if(!this.placesService.useLocation) throw Error("There is no placesService.useLocation")
+
+
     console.log(this.placesService.useLocation)
-    this.map = L.map('map').setView([51.505, -0.09], 13)
+
+    this.map = L.map('map', {maxBounds: this.bounds})
+      .setView([this.placesService.useLocation![1], this.placesService.useLocation![0],], 13,)
+
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
