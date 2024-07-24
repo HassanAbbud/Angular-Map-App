@@ -28,7 +28,7 @@ export class MapViewComponent implements AfterViewInit {
 
     console.log(this.placesService.useLocation)
 
-    this.map = L.map('map', {maxBounds: this.bounds})
+    this.map = L.map('map', {maxBounds: this.bounds, zoomControl: false})
       .setView([this.placesService.useLocation![0], this.placesService.useLocation![1],], 16)
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -45,6 +45,8 @@ export class MapViewComponent implements AfterViewInit {
     new L.Marker(this.placesService.useLocation)
       .bindPopup( popup )
       .addTo( this.map )
+
+    this.map.addControl(L.control.zoom({ position: 'bottomleft' }));
 
     this.mapService.setMap( this.map );
   }
