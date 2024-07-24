@@ -27,12 +27,23 @@ export class MapViewComponent implements AfterViewInit {
     console.log(this.placesService.useLocation)
 
     this.map = L.map('map', {maxBounds: this.bounds})
-      .setView([this.placesService.useLocation![1], this.placesService.useLocation![0],], 13,)
+      .setView([this.placesService.useLocation![0], this.placesService.useLocation![1],], 16)
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(this.map);
+
+    const popup = new L.Popup()
+      .setContent(`
+        <h6>I am here</h6>
+        <span>Im in this place of the world</span>
+      `);
+
+    new L.Marker(this.placesService.useLocation)
+      .bindPopup( popup )
+      .addTo( this.map )
+
   }
 
 
