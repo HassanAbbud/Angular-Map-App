@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PlacesService } from '../../services';
 
 @Component({
@@ -7,8 +7,7 @@ import { PlacesService } from '../../services';
   styleUrl: './map-screen.component.css'
 })
 export class MapScreenComponent {
-
-  constructor(private placesService: PlacesService){}
+  private placesService = inject(PlacesService)
 
   get isUserLocationReady() {
     return this.placesService.isUserLocationReady;
