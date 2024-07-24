@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { LatLngBoundsExpression, LatLngExpression } from 'leaflet';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlacesService {
+
 
   public useLocation?: [number, number];
 
@@ -32,6 +32,9 @@ export class PlacesService {
         }
       );
     });
+  }
 
+  getPlacesByQuery(query: string) {
+    throw new Error('Method not implemented.');
   }
 }

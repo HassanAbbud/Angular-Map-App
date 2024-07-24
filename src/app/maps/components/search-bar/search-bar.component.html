@@ -5,6 +5,8 @@
       type="text"
       class="form-control"
       placeholder="Search place..."
+      #txtQuery
+      (keyup)="onQueryChanged(txtQuery.value)"
   >
 
   <app-search-results></app-search-results>

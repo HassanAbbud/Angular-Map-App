@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { PlacesService } from '../../services';
 import * as L from 'leaflet'
 import { MapService } from '../../services/map.service';

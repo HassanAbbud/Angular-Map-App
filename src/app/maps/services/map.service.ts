@@ -17,6 +17,10 @@ export class MapService {
   setMap( map: L.Map ) {
     this.map = map;
   }
+
+  get mapInstance(){
+    return this.map;
+  }
   flyTo( coords: L.LatLngExpression ) {
     if ( !this.isMapReady ) throw Error('Map is not initialized');
 
