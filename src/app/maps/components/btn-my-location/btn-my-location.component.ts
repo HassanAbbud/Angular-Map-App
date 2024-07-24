@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MapService, PlacesService } from '../../services';
+import { LatLngExpression } from 'leaflet';
 
 @Component({
   selector: 'app-btn-my-location',
@@ -6,8 +8,19 @@ import { Component } from '@angular/core';
   styleUrl: './btn-my-location.component.css'
 })
 export class BtnMyLocationComponent {
+  private placesService = inject(PlacesService);
+  private mapService = inject(MapService);
+
+  private latLng: LatLngExpression = {
+    lat: this.placesService.useLocation![0],
+    lng: this.placesService.useLocation![1]
+  }
+
   goToMyLocation() {
-  throw new Error('Method not implemented.');
+    if ( !this.placesService.isUserLocationReady ) throw Error('No user loaction found');
+    if ( !this.mapService.isMapReady ) throw Error('Map is not available');
+
+    this.mapService.flyTo( this.latLng)
   }
 
 }

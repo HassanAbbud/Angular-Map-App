@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { LatLngBoundsExpression, LatLngExpression } from 'leaflet';
 
 @Injectable({
   providedIn: 'root'

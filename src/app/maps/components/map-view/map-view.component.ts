@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
 import { PlacesService } from '../../services';
 import * as L from 'leaflet'
+import { MapService } from '../../services/map.service';
 
 @Component({
   selector: 'app-map-view',
@@ -9,6 +10,7 @@ import * as L from 'leaflet'
 })
 export class MapViewComponent implements AfterViewInit {
   private placesService = inject(PlacesService);
+  private mapService = inject(MapService)
 
   private southWest = L.latLng(-89.98155760646617, -180);
   private northEast = L.latLng(89.99346179538875, 180);
@@ -44,6 +46,7 @@ export class MapViewComponent implements AfterViewInit {
       .bindPopup( popup )
       .addTo( this.map )
 
+    this.mapService.setMap( this.map );
   }
 
 
