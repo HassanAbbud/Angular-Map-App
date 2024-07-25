@@ -23,7 +23,7 @@ export class SearchBarComponent {
     const results = await provider.search({ query });
 
     this.debounceTimer = setTimeout(() => {
-      console.log(results)
+      return this.placesService.setPlaces(results);
     }, 350 );
 
   }

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { PlacesResponse } from '../interfaces/places.interface';
+import { SearchResult } from 'leaflet-geosearch/dist/providers/provider.js';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +9,9 @@ export class PlacesService {
 
 
   public useLocation?: [number, number];
+
+  public isLoadingPlaces: boolean = false;
+  public places: SearchResult[] = [];
 
   get isUserLocationReady(): boolean {
     return !!this.useLocation;
@@ -34,7 +39,8 @@ export class PlacesService {
     });
   }
 
-  getPlacesByQuery(query: string) {
-    throw new Error('Method not implemented.');
+  setPlaces(query: SearchResult[]) {
+    this.places = query
   }
+
 }
