@@ -7,14 +7,16 @@
 } @else {
   <ul class="list-group mt-2"  >
     @for (place of places; track $index) {
-      <li class="list-group-item list-group-item-action pointer">
+      <li class="list-group-item list-group-item-action pointer"
+        [class.active]="place.label === selectedId"
+        (click)="flyTo( place )">
           <h6>{{ "Place label only start" }}</h6>
           <p>{{ place.label}}</p>
           <button
               class="btn btn-sm"
-
+              [ngClass]="(place.label === selectedId) ? 'btn-outline-light':'btn-outline-primary'"
           >
-              Addresses
+              Directions
           </button>
       </li>
     }
