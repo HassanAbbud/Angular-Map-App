@@ -1,21 +1,23 @@
+@if (isLoadingPlaces) {
+  <div
+      class="alert alert-primary mt-2 text-center">
+      <h6>Loading </h6>
+      <span>Please wait...</span>
+  </div>
+} @else {
+  <ul class="list-group mt-2"  >
+    @for (place of places; track $index) {
+      <li class="list-group-item list-group-item-action pointer">
+          <h6>{{ "Place label only start" }}</h6>
+          <p>{{ place.label}}</p>
+          <button
+              class="btn btn-sm"
 
-<div
-    class="alert alert-primary mt-2 text-center">
-    <h6>Loading </h6>
-    <span>Please wait...</span>
-</div>
+          >
+              Addresses
+          </button>
+      </li>
+    }
 
-<ul class="list-group mt-2"  >
-  @for (place of places; track $index) {
-    <li class="list-group-item list-group-item-action pointer">
-        <h6>{{ "Place label only start" }}</h6>
-        <p>{{ place.label}}</p>
-        <button
-            class="btn btn-sm"
-
-        >
-            Addresses
-        </button>
-    </li>
-  }
-</ul>
+  </ul>
+}

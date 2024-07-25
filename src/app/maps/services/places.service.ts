@@ -40,6 +40,14 @@ export class PlacesService {
   }
 
   setPlaces(query: SearchResult[]) {
+    if ( query.length === 0 ) {
+      this.isLoadingPlaces = false;
+      this.places = [];
+      return;
+    }
+
+    if ( !this.useLocation ) throw Error('No hay userLocation');
+
     this.places = query
   }
 

@@ -12,18 +12,20 @@ import { MapService } from '../../services/map.service';
 })
 export class SearchBarComponent {
   private placesService = inject(PlacesService);
-  private mapService = inject(MapService);
   private debounceTimer?: NodeJS.Timeout;
 
 
-  async onQueryChanged( query: string = '' ) {
+  onQueryChanged( query: string = '' ) {
 
     if ( this.debounceTimer ) clearTimeout( this.debounceTimer );
-    const provider = new OpenStreetMapProvider();
-    const results = await provider.search({ query });
 
-    this.debounceTimer = setTimeout(() => {
-      return this.placesService.setPlaces(results);
+    this.placesService.isLoadingPlaces = true
+
+    this.debounceTimer = setTimeout(async () => {
+      const provider = new OpenStreetMapProvider();
+      const results = await provider.search({ query });
+      this.placesService.isLoadingPlaces = false;
+      this.placesService.setPlaces(results);
     }, 350 );
 
   }
