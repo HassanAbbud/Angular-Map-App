@@ -10,7 +10,7 @@
       <li class="list-group-item list-group-item-action pointer"
         [class.active]="place.label === selectedId"
         (click)="flyTo( place )">
-          <h6>{{ "Place label only start" }}</h6>
+          <h6>{{ place.label.split(' ')[0] }}</h6>
           <p>{{ place.label}}</p>
           <button
               class="btn btn-sm"

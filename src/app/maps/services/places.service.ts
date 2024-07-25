@@ -1,12 +1,14 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { PlacesResponse } from '../interfaces/places.interface';
 import { SearchResult } from 'leaflet-geosearch/dist/providers/provider.js';
+import { MapService } from './map.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlacesService {
 
+  private mapService = inject(MapService);
 
   public useLocation?: [number, number];
 
@@ -49,6 +51,8 @@ export class PlacesService {
     if ( !this.useLocation ) throw Error('No hay userLocation');
 
     this.places = query
+    this.mapService.createMarkersFromPlaces(this.places);
+
   }
 
 }
