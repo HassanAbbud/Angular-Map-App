@@ -23,13 +23,13 @@ export class MapViewComponent implements AfterViewInit {
   }
 
   public initMap(){
-    if(!this.placesService.useLocation) throw Error("There is no placesService.useLocation")
+    if(!this.placesService.userLocation) throw Error("There is no placesService.useLocation")
 
 
-    console.log(this.placesService.useLocation)
+    console.log(this.placesService.userLocation)
 
     this.map = L.map('map', {maxBounds: this.bounds, zoomControl: false})
-      .setView([this.placesService.useLocation![0], this.placesService.useLocation![1],], 16)
+      .setView([this.placesService.userLocation![0], this.placesService.userLocation![1],], 16)
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
@@ -42,7 +42,7 @@ export class MapViewComponent implements AfterViewInit {
         <span>Im in this place of the world</span>
       `);
 
-    new L.Marker(this.placesService.useLocation)
+    new L.Marker(this.placesService.userLocation)
       .bindPopup( popup )
       .addTo( this.map )
 

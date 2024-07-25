@@ -10,13 +10,13 @@ export class PlacesService {
 
   private mapService = inject(MapService);
 
-  public useLocation?: [number, number];
+  public userLocation?: [number, number];
 
   public isLoadingPlaces: boolean = false;
   public places: SearchResult[] = [];
 
   get isUserLocationReady(): boolean {
-    return !!this.useLocation;
+    return !!this.userLocation;
   }
 
   constructor() {
@@ -29,8 +29,8 @@ export class PlacesService {
 
       navigator.geolocation.getCurrentPosition(
         ({ coords }) => {
-          this.useLocation = [ coords.latitude, coords.longitude ];
-          resolve( this.useLocation );
+          this.userLocation = [ coords.latitude, coords.longitude ];
+          resolve( this.userLocation );
         },
         ( err ) => {
           alert('Could not get Geolocation')
@@ -48,10 +48,10 @@ export class PlacesService {
       return;
     }
 
-    if ( !this.useLocation ) throw Error('No hay userLocation');
+    if ( !this.userLocation ) throw Error('No hay userLocation');
 
     this.places = query
-    this.mapService.createMarkersFromPlaces(this.places, this.useLocation);
+    this.mapService.createMarkersFromPlaces(this.places, this.userLocation);
 
   }
 

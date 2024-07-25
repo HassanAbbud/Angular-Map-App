@@ -12,8 +12,8 @@ export class BtnMyLocationComponent {
   private mapService = inject(MapService);
 
   private latLng: LatLngExpression = {
-    lat: this.placesService.useLocation![0],
-    lng: this.placesService.useLocation![1]
+    lat: this.placesService.userLocation![0],
+    lng: this.placesService.userLocation![1]
   }
 
   goToMyLocation() {
