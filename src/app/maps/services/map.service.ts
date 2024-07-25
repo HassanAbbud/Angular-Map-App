@@ -30,7 +30,7 @@ export class MapService {
 
   }
 
-  createMarkersFromPlaces( places: SearchResult[] ) {
+  createMarkersFromPlaces( places: SearchResult[], userLocation: [number, number] ) {
 
     if ( !this.map ) throw Error('Map not initialized');
 
@@ -39,14 +39,14 @@ export class MapService {
     const newMarkers = [];
 
     for (const place of places) {
-      const currentLatLng: L.LatLngExpression = [place.y, place.x];
+      const center: L.LatLngExpression = [place.y, place.x];
       const popup = new L.Popup()
         .setContent(`
           <h6>${ place.label.split(' ')[0] }</h6>
           <span>${ place.label }</span>
         `);
 
-      const newMarker = new L.Marker(currentLatLng)
+      const newMarker = new L.Marker(center)
         .bindPopup( popup )
         .addTo( this.map );
 
@@ -58,6 +58,13 @@ export class MapService {
     if( places.length === 0 ) return;
 
     // Limites del mapa
+    const bounds = new L.LatLngBounds([]);
+    newMarkers.forEach( marker => bounds.extend( marker.getLatLng() ) );
+    bounds.extend( userLocation );
+
+    this.map.fitBounds(bounds, {
+      padding: [200, 0]
+    })
 
   }
 

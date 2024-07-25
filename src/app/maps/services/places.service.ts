@@ -51,7 +51,7 @@ export class PlacesService {
     if ( !this.useLocation ) throw Error('No hay userLocation');
 
     this.places = query
-    this.mapService.createMarkersFromPlaces(this.places);
+    this.mapService.createMarkersFromPlaces(this.places, this.useLocation);
 
   }
 
