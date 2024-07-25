@@ -63,7 +63,7 @@ export class MapService {
     bounds.extend( userLocation );
 
     this.map.fitBounds(bounds, {
-      padding: [200, 0]
+      padding: [50, 50]
     })
 
   }

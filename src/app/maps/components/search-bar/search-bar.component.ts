@@ -1,8 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { PlacesService } from '../../services/places.service';
-import { OpenStreetMapProvider, SearchControl } from 'leaflet-geosearch';
-import { MapViewComponent } from '../map-view/map-view.component';
-import { MapService } from '../../services/map.service';
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
 
 
 @Component({
